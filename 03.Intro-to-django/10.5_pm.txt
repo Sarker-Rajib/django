@@ -1,0 +1,11 @@
+Module 10.5 Practice Problems
+
+Make a project and create app inside it and a template folder also. Then pass some context data and then filter the context data based on the blogs.
+
+1. Follow the below websites and practice all the template filters
+
+https://www.geeksforgeeks.org/django-template-filters/
+https://earthly.dev/blog/django-template-filters/
+
+2. Practice the Simple Page Navigation project again and again
+

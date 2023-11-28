@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+</head>
+
+<body>
+    <h1>Hello Contact</h1>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/navs/contact/">Contact</a></li>
+        <li><a href="/navs/about/">About</a></li>
+    </ul>
+    <p>Myself : {{ author}}</p>
+    {{arrs}}
+    <p>{{ arrs | join:"  "}}</p>
+    <h1>{{ birtday | date:"D d M Y"}}</h1>
+
+    <!-- conditional -->
+    {% if age >= 20 %}
+    <h2>You will get driving Licence</h2>
+    {% elif age >= 10 and age <= 19 %} 
+    <h2>You will not get driving Licence</h2>
+    {% else %}
+    <p>You are a child</p>
+    {% endif %}
+
+
+    {% comment %} for {% endcomment %}
+    {% for i in list %}
+    <h3>{{i.name}} : {{i.age}}</h3>
+    {% endfor %}
+</body>
+
+</html>
