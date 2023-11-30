@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-body-tertiary">
+            <a class="navbar-brand" href="/">PR</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/navigation/about/">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/navigation/">Nav-Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/navigation/contact/">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="py-5">
+        <div class="container">
+            <h1>This is home from Navbar main</h1>
+            <h2 class="text-success">We will see filters</h2>
+            <!--  -->
+            <p class="text-warning">{{arr}}</p>
+            <p class="text-danger">{{string}}</p>
+            <br>
+            <p class="text-danger">Add : </p>
+            <p class="text-danger">Add slashes : {{ arr2 | addslashes }}</p>
+            <p class="text-danger">Capital first : {{ string | capfirst }}</p>
+            <p class="text-success">Add slashes : {{ string | center:"12" }}</p>
+            <p class="text-success">Cut : {{ string | cut:" " }}</p>
+            <p class="text-success">Date : {{ date | date:"D d M Y" }}</p>
+            <p class="text-success">Default Value : {{ bool | default:"Nothing" }}</p>
+            <p class="text-primary">dictsort : {{ persons | dictsort:"name" }}</p>
+            <p class="text-primary">divisibleby : {{ 45 | divisibleby:"3" }}</p>
+            <p class="text-primary">escape : {{ sym | escape }}</p>
+            <p class="text-primary">filesizeformat : {{ 34525654656 | filesizeformat }}</p>
+            <p class="text-primary">First : {{ arr | first }}</p>
+            <p class="text-primary">Last : {{ arr | last }}</p>
+            <p class="text-primary">Length : {{ arr | length }}</p>
+            <p class="text-primary">Join : {{ arr2 | join:" //\ " }}</p>
+            <p class="text-primary">linenumbers : {{ string | linenumbers }}</p>
+            <p class="text-primary">uppercase : {{ string | upper }}</p>
+            <p class="text-primary">lowecase : {{ "Hello DEAR" | lower }}</p>
+            <p class="text-primary">word count : {{ string | wordcount }}</p>
+            <p class="text-primary">Title : {{ 'this is title' | title }}</p>
+            <p class="text-primary">slugify : {{ string | slugify }}</p>
+            <p class="text-primary">Join : {{ arr2 | slice:":2" }}</p>
+            <p class="text-primary">random : {{ arr2 | random }}</p>
+            <p class="text-primary">make_list : {{ string | make_list }}</p>
+            <p class="text-primary">Hour : {{ date | time:"H:i" }}</p>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
