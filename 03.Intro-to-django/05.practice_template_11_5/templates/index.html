@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h1>This is home</h1>
+
+<div class="row g-3">
+    {% for meal in meals %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card position-relative">
+            <img src={{meal.strMealThumb}} class="card-img-top" alt="menu-image">
+            <div class="card-body">
+                <h5 class="card-title">{{meal.strMeal}}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+            </div>
+            <p class="position-absolute top-0 end-0 bg-light rounded-2 px-2">Id : {{meal.idMeal}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
