@@ -1,0 +1,10 @@
+.home-banner {
+    background: url(../bn1.jpg) no-repeat center center/cover;
+}
+
+.home-banner .wrap {
+    padding: 40px;
+    min-height: 500px;
+    background: #23a7a7a8;
+    color: #fff;
+}

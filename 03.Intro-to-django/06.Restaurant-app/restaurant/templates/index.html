@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block contents %}
+<div class="home">
+    <h2 class="text-center pb-3">Welcome to <span style="color: rgb(219, 156, 20);">"Hangout Testaurant"</span> !</h2>
+
+    <div class="home-banner">
+        <div class="wrap text-center d-flex align-items-center justify-content-center">
+            <div>
+                <h2>"Indulge Your Senses at Hangout Testaurant!</h2>
+                <p>Savor Culinary Craftsmanship & Unwind in Ambrosial Delight.</p>
+                <p>Join Us for Exquisite Flavors & Memorable Moments.</p>
+                <p class="text-center fs-2">Taste, Share, & Celebrate - Your Culinary Journey Awaits!"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 pt-3">
+        <div class="col-md-6 h-100">
+            <img src="{% static 'f1.webp' %}" alt="image" class="img-fluid w-100">
+        </div>
+        <div class="col-md-6 h-100">
+            <img src="{% static 'f2.webp' %}" alt="image" class="img-fluid w-100">
+        </div>
+    </div>
+
+</div>
+{% endblock %}
