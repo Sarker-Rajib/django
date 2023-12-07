@@ -13,10 +13,41 @@
         <label for="name" class="form-label">Name</label>
         <input name="username" type="text" class="form-control" id="name">
     </div>
+    <div class="mb-3">
+        <select name="number" class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+
+    <br>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<hr>
+<!-- get -->
+<form method="get">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input name="username" type="text" class="form-control" id="name">
+    </div>
+    <div class="mb-3">
+        <select name="number" class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
 
-<p>name: {{name}}</p>
-<p>email: {{email}}</p>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock %}
