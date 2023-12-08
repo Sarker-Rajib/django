@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .form import contactform
+from .form import contactform, studentData, PasswordValidation
 
 # Create your views here.
 
@@ -32,4 +32,29 @@ def djangoform(request):
         form = contactform()
         return render(request, 'first_app/djangoform.html', {'form':form})
 
-        
+
+def studentForm(request):
+    if request.method == 'POST':
+        form = studentData(request.POST, request.FILES)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+            return render(request, 'first_app/validat-form.html', {'form':form})
+    
+    else:
+        form = studentData()
+        return render(request, 'first_app/validat-form.html', {'form':form})
+
+
+def passwordmatch(request):
+    if request.method == 'POST':
+        form = PasswordValidation(request.POST, request.FILES)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+
+        return render(request, 'first_app/password-match.html', {'form':form})
+    
+    else:
+        form = PasswordValidation()
+        return render(request, 'first_app/password-match.html', {'form':form})
