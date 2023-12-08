@@ -1,0 +1,1 @@
+* command for making migration for db -  py manage.py makemigrations then $ py manage.py migrate

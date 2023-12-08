@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2>This is First app 1</h2>
+{% if data %}
+
+<table class="table table-dark table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">Roll</th>
+            <th scope="col">Name</th>
+            <th scope="col">Father's Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for st in data %}
+        <tr>
+            <td>{{st.roll}}</td>
+            <td>{{st.name}}</td>
+            <td>{{st.father_name}}</td>
+            <td>{{st.address}}</td>
+            <td><a class="btn btn-danger text-white" href="{% url 'delete_student' st.roll %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h3>No data</h3>
+{% endif %}
+{% endblock %}
