@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block forms %}
+<h1>This is model form</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" value="Submit" class="btn btn-warning">Submit</button>
+</form>
+{% endblock %}
