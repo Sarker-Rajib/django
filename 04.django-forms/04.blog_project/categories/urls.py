@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import category
+from .views import AddCategory
 
 urlpatterns = [
-    path('', category),
+    path('', AddCategory, name='add-category'),
 ]

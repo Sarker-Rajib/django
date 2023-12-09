@@ -2,13 +2,13 @@
 
 {% block contents %}
 <div class="container pt-5">
-    <h3>Add a Author</h3>
+    <h3>Create a Profile</h3>
     <hr>
 
     <form method="post">
         {% csrf_token %}
         {{form}}
-        <button class="btn btn-success mt-3 w-100">Add Author</button>
+        <button class="btn btn-success mt-3 w-100">Add Profile</button>
     </form>
 </div>
 {% endblock %}

@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .c-button {
-            display: block;
+            display: inline-block;
             --bg: #20b2d6;
             position: relative;
             --text-color: #fff;
@@ -38,7 +38,8 @@
         }
 
         input,
-        textarea {
+        textarea,
+        select {
             width: 100%;
             padding: 5px;
             border-radius: 5px;
@@ -67,9 +68,6 @@
                         <li class="nav-item me-md-2">
                             <a class="c-button" href="/admin">Dashboard</a>
                         </li>
-                        <li class="nav-item me-md-2">
-                            <a class="c-button" href="{% url 'authors' %}">Authors</a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -77,6 +75,22 @@
     </header>
 
     <!--  -->
+    <div class="container pt-5">
+        <ul class="p-0 d-flex nav">
+            <li class="me-md-2">
+                <a class="c-button" href="{% url 'authors' %}">Add_Authors</a>
+            </li>
+            <li class="me-md-2">
+                <a class="c-button" href="{% url 'add-profile' %}">Add_profile</a>
+            </li>
+            <li class="me-md-2">
+                <a class="c-button" href="{% url 'add-post' %}">Add_Post</a>
+            </li>
+            <li class="me-md-2">
+                <a class="c-button" href="{% url 'add-category' %}">Add_Category</a>
+            </li>
+        </ul>
+    </div>
     {% block contents %}
     {% endblock %}
 
