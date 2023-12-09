@@ -2,8 +2,31 @@
 
 {% block contents %}
 <div class="container">
-    <br>
+    <hr class="mt-5">
     <h2>Welcome Home</h2>
+    <div class="row g-3">
+        {% for post in data%}
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-success">
+                <h4 class="card-header">{{post.title}}</h4>
+                <div class="card-body">
+                    <p>{{post.content | truncatechars:170 }}</p>
+                    <p>Author: {{post.author.name}}</p>
+                    <p>Category :
+                        {% for cat in post.category.all %}
+                        <span>{{cat.name}},</span>
+                        {% endfor%}
+                    </p>
+
+                    <a href="{% url 'edit-post' post.id %}"
+                        class="d-inline-block px-3 py-2 text-white rounded bg-warning">Edit</a>
+                    <a href="{% url 'delete-post' post.id %}"
+                        class="d-inline-block px-3 py-2 text-white rounded bg-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
     <hr>
 </div>
 {% endblock %}
