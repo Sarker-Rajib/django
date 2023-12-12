@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-<h2>Add Task</h2>
+<h2>Edit Task</h2>
 <hr>
 <form method="POST">
     {% csrf_token %}
     {{form}}
-    <button class="btn btn-success mt-3 w-100">Submit</button>
+    <button class="btn btn-success mt-3 w-100">Edit</button>
 </form>
 {% endblock %}

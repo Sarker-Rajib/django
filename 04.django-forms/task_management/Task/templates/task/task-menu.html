@@ -2,4 +2,33 @@
 
 {% block contents %}
 <h2>Tasks</h2>
+<hr>
+<div class="row g-3">
+    {% for item in data %}
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 p-3 shadow-md shadow border-warning">
+            <h3 class="card-title">
+                {{item.id}} : {{item.taskTitle}}
+            </h3>
+            <p>
+                Details: <br />
+                {{item.taskDescription}}
+            </p>
+            <p>
+                Category : {{item.category}}
+            </p>
+            {% if item.is_completed %}
+            <p class="border rounded p-1 bg-success text-center text-light">Completed</p>
+            {% else %}
+            <p class="border rounded p-1 bg-warning text-center">Not Completed</p>
+            <div class="row">
+                <div class="col-6"><a href="{% url 'edit-task' item.id %}" class="w-100 btn btn-warning">Edit</a></div>
+                <div class="col-6"><a href="{% url 'delete-task' item.id %}" class="w-100 btn btn-danger">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
