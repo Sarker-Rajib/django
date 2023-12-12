@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="pt-5">
+        <h2>Homepage</h2>
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Instrument</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for artist in data %}
+                <tr>
+                    <th scope="row">{{artist.id}}</th>
+                    <th scope="row">{{artist.FirstName}}</th>
+                    <th scope="row">{{artist.LastName}}</th>
+                    <th scope="row">{{artist.Email}}</th>
+                    <th scope="row">{{artist.PhoneNumber}}</th>
+                    <th scope="row">{{artist.InstrumentType}}</th>
+
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+{% endblock%}
