@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Welcome Profile</h2>
+<h3>{{user}}</h3>
+<a class="btn btn-success m-1" href="{% url 'changePass' %}">Change Password</a>
+<a class="btn btn-success m-1" href="{% url 'changePass2' %}">Change Password 2</a>
+
+{% endblock %}

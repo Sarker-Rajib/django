@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="container pt-5">
+    <h3>Authors</h3>
+    <hr>
+    <div class="text-end">
+        <a class="btn btn-warning text-success" href="{% url 'add-author' %}">Add Author</a>
+    </div>
+</div>
+{% endblock %}

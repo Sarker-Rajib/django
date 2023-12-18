@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>-- Change Password --</h2>
+{% if messages %}
+{% for m in messages %}
+<div class="bg-success m-auto p-2 rounded">
+    <p class="text-white">{{m}}</p>
+</div>
+{%endfor%}
+{%endif%}
+<form method="POST" novalidate>
+    {%csrf_token%}
+    <!--  -->
+    {% if form.non_field_errors %}
+    {% for err in form.non_field_errors %}
+    <p class="text-white bg-danger rounded p-2 px-3 text-center">{{err}}</p>
+    {% endfor %}
+    {% endif %}
+    <!--  -->
+
+    {% for fm in form %}
+    {{fm.label_tag}}
+    {{fm}}
+    {{fm.errors | striptags}}
+    {%endfor%}
+    <br>
+    <button type="submit" class="btn btn-success mt-2 w-100">Submit</button>
+</form>
+
+{% endblock %}
