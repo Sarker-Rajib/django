@@ -4,4 +4,11 @@
 
 {% block content %}
 <h1>Welcome to The Blog Site</h1>
+
+{% if request.user.is_authenticated %}
+<p>{{user}} </p>
+{% else %}
+<p>No User logged-in</p>
+{% endif %}
+
 {% endblock %}
