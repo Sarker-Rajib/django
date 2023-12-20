@@ -3,13 +3,13 @@
 
 
 {% block content %}
-<h2 class="pb-1 text-center">-- Welcome to The Blog Site --</h2>
+<h2 class="pb-2 text-center">-- My Posts --</h2>
 <hr>
 <!--  -->
 <div class="row g-3">
     {% for item in data %}
     <div class="col-md-6 col-md-4 col-lg-3">
-        <div class="news-card rounded border overflow-hidden p-4 h-100 position-relative">
+        <div class="news-card rounded border p-3 h-100">
             <p>Post id: {{item.id}}</p>
             <h5>{{item.title | truncatechars:40}}</h5>
             <p>{{item.content | truncatewords:20}}</p>
@@ -18,12 +18,14 @@
                 style="background: #414563; padding: 2px 5px; margin: 3px;">{{cate.name}}</span>
             {% endfor%}
             <hr>
-            <a href="#" class="btn mb-2">Read More ></a>
-
-            <p class="bg-success text-white w-100 position-absolute start-0 bottom-0 px-3 py-1 m-0">Author :
-                {{item.author.first_name}}
-                {{item.author.last_name}}
-            </p>
+            <div class="row">
+                <div class="col-6">
+                    <a href="{% url 'edit-post' item.id %}" class="btn w-100 btn-warning">Edit</a>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'delete-post' item.id %}" class="btn w-100 btn-danger">Delete</a>
+                </div>
+            </div>
         </div>
     </div>
     {% endfor %}

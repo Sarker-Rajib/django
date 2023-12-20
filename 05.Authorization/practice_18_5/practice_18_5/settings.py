@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'User',
     'Category',
-    'Posts'
+    'Posts',
 ]
 
 LOGIN_URL = '/user/login'  # login URL

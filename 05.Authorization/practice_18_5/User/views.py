@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 # import forms
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from .forms import User_Registration_form, UpdateUserData
 # Import Validators / Authenticators
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 # import required decorator
 from django.contrib.auth.decorators import login_required
+from Posts.models import Add_Post
 
 # My views
 @login_required
@@ -63,6 +64,7 @@ def user_logout(request):
     logout(request)
     return redirect('user_login')
 
+@login_required
 def update_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, data = request.POST)
@@ -75,6 +77,23 @@ def update_password(request):
         form = PasswordChangeForm(user = request.user)
     return render(request, 'user/change-password.html', {'form': form})
 
+@login_required
+def update_password_eop(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = SetPasswordForm(user=request.user, data = request.POST)
+            if form.is_valid():
+                form.save()
+                update_session_auth_hash(request, form.user)
+                return redirect('profile')
+        else:
+            form = SetPasswordForm(user=request.user)        
+            return render(request, 'user/change-password.html', {'form': form})
+    else:
+        return redirect('login')
 
-
-
+# Create your views here.
+@login_required
+def my_post(request):
+    data = Add_Post.objects.filter(author = request.user)
+    return render(request, 'user/my-post.html', {'data': data})
