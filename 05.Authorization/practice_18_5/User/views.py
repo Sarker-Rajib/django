@@ -1,16 +1,27 @@
 from django.shortcuts import render, redirect
 # import forms
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import User_Registration_form
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from .forms import User_Registration_form, UpdateUserData
 # Import Validators / Authenticators
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 # import messages
 from django.contrib import messages
-
+# import required decorator
+from django.contrib.auth.decorators import login_required
 
 # My views
+@login_required
 def user_profile(request):
-    return render(request, 'user/profile.html')
+        if request.method == 'POST':
+            form = UpdateUserData(request.POST, instance = request.user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Account Created Successfully')
+                return redirect('profile')
+
+        else:    
+            form = UpdateUserData(instance = request.user)
+        return render(request, 'user/profile.html', {'form':form})
 
 def user_register(request):
     if request.user.is_authenticated:
@@ -51,3 +62,19 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('user_login')
+
+def update_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, data = request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Updated Successfully')
+            return redirect('profile')
+    else:
+        form = PasswordChangeForm(user = request.user)
+    return render(request, 'user/change-password.html', {'form': form})
+
+
+
+
