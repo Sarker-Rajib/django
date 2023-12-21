@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<h2>Add a Category</h2>
+<h2>Confirm Delete</h2>
 <div>
     {% if messages %}
     {% for m in messages %}
@@ -12,14 +12,23 @@
     {% endif %}
 </div>
 
-<form method="POST">
-    <!-- token that is important -->
-    {% csrf_token %}
-    <!-- form -->
-    <p>Are yoy sure to delete the post ?</p>
-    {{form}}
+<div class="m-auto" style="max-width: 400px;">
+    <form method="POST">
+        <!-- token that is important -->
+        {% csrf_token %}
+        <!-- form -->
+        <h5 class="text-center text-warning">Are you sure to delete the post ?</h5>
+        {{form}}
 
-    <button class="btn btn-success w-100 mt-4 mb-2 p-3">-- Delete POst --</button>
-</form>
+        <div class="row">
+            <div class="col-6">
+                <a href="{% url 'myPosts' %}" class="btn btn-success w-100 mt-4 mb-2 p-3">Back</a>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-danger w-100 mt-4 mb-2 p-3" type="submit">Delete Post</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}
