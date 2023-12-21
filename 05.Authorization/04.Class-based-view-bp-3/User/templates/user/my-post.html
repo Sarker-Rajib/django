@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<!--  -->
+
+
+{% block content %}
+<h2 class="pb-2 text-center">-- My Posts --</h2>
+<hr>
+<!--  -->
+<div class="row g-3">
+    {% for item in data %}
+    <div class="col-md-6 col-md-4 col-lg-3">
+        <div class="news-card rounded border p-3 h-100">
+            <p>Post id: {{item.id}}</p>
+            <h5>{{item.title | truncatechars:40}}</h5>
+            <p>{{item.content | truncatewords:20}}</p>
+            {% for cate in item.category.all %}
+            <span class="text-white block rounded d-inline-block"
+                style="background: #414563; padding: 2px 5px; margin: 3px;">{{cate.name}}</span>
+            {% endfor%}
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <a href="{% url 'edit-post' item.id %}" class="btn w-100 btn-warning">Edit</a>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'delete-post' item.id %}" class="btn w-100 btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+<br>
+
+{% endblock %}

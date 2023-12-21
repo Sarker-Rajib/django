@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+<!--  -->
+
+
+{% block content %}
+<div class="m-auto shadow p-4 rounded border border-warning" style="max-width: 450px;">
+    <h2 class="text-center">Please Login</h2>
+    <form method="POST">
+        <!-- token that is important -->
+        {% csrf_token %}
+        <!-- form -->
+        {{form}}
+
+        <button class="btn btn-success w-100 mt-4 mb-2 p-3">Register</button>
+    </form>
+</div>
+{% endblock %}

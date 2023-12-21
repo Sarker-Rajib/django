@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+<!--  -->
+
+
+{% block content %}
+<h2>Please Register</h2>
+
+<form method="POST">
+    <!-- token that is important -->
+    {% csrf_token %}
+    <!-- form -->
+    {{form}}
+
+    <button class="btn btn-success w-100 my-3 p-3">Register</button>
+</form>
+{% endblock %}

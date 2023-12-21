@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+<!--  -->
+
+
+{% block content %}
+<h2>Add a Category</h2>
+<div>
+    {% if messages %}
+    {% for m in messages %}
+    <p class="position-fixed start-50 top-0 px-3 py-2 bg-success text-white">{{m}}</p>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<form method="POST">
+    <!-- token that is important -->
+    {% csrf_token %}
+    <!-- form -->
+    <p>Are yoy sure to delete the post ?</p>
+    {{form}}
+
+    <button class="btn btn-success w-100 mt-4 mb-2 p-3">-- Delete POst --</button>
+</form>
+
+{% endblock %}

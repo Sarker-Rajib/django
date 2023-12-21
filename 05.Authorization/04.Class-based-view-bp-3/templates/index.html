@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+<!--  -->
+
+
+{% block content %}
+<h2 class="pb-1 text-center">-- Welcome to The Blog Site --</h2>
+<hr>
+<!--  -->
+<div class="row g-2">
+    <div class="col-lg-2">
+        <div class="p-2 py-4 rounded text-white" style="background: #406697;">
+            <p class="text-center">Total Post : {{posts | length}}</p>
+            <div class="form-check">
+                <a href="{% url 'home' %}" for="all" class="text-white d-block">
+                    All
+                </a>
+            </div>
+            {% for item in categories %}
+            <div class="form-check">
+                <a href="{% url 'post_by_category' item.slug %}" class="text-white">
+                    {{item.name}}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-lg-10">
+        <div class="row g-3">
+            {% for item in posts %}
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card rounded border overflow-hidden p-4 h-100 position-relative">
+                    <p>Post id: {{item.id}}</p>
+                    <h5>{{item.title | truncatechars:40}}</h5>
+                    <p>{{item.content | truncatewords:20}}</p>
+                    {% for cate in item.category.all %}
+                    <span class="text-white block rounded d-inline-block"
+                        style="background: #414563; padding: 2px 5px; margin: 3px;">{{cate.name}}</span>
+                    {% endfor%}
+                    <hr>
+                    <a href="#" class="btn mb-2">Read More ></a>
+
+                    <p class="bg-success text-white w-100 position-absolute start-0 bottom-0 px-3 py-1 m-0">Author :
+                        {{item.author.first_name}}
+                        {{item.author.last_name}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+<br>
+
+{% endblock %}
