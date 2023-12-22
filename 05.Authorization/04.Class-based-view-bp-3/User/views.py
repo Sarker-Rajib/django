@@ -9,6 +9,7 @@ from django.contrib import messages
 # import required decorator
 from django.contrib.auth.decorators import login_required
 from Posts.models import Add_Post
+from django.contrib.auth.views import LoginView, LogoutView
 
 # My views
 @login_required
@@ -97,3 +98,18 @@ def update_password_eop(request):
 def my_post(request):
     data = Add_Post.objects.filter(author = request.user)
     return render(request, 'user/my-post.html', {'data': data})
+
+# class based views
+def UserLoginView(LoginView):
+    template_name = 'user/login.html'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Logged in successful.')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.success(self.request, 'Logged-in Information Incorrect')
+        return super().form_invalid(form)
+
+
+
