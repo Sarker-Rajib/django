@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 # class based view
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 
 # Create your views here.
 @login_required
@@ -67,4 +67,11 @@ class DeletePostByClass(DeleteView):
     model = Add_Post
     template_name = 'post/delete-post.html'
     pk_url_kwarg = 'id'
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('myPosts')
+
+class DetailPostByClass(DetailView):
+    model = Add_Post
+    pk_url_kwarg = 'id'
+    template_name = 'post/detail-post.html'
+    context_object_name = 'post'
+

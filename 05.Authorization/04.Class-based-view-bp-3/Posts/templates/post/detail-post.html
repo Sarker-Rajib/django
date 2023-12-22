@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!--  -->
+
+{% block content %}
+
+<!-- detail-post.html -->
+<div class="news-card rounded border p-3 h-100">
+    <img src="{{ post.image.url }}" alt="image" class="img-fluid">
+    <p>Posts id: {{ post.id }}</p>
+    <h5>{{ post.title }}</h5>
+    <p>{{post.content}}</p>
+    {% for cate in post.category.all %}
+    <span class="text-white block rounded d-inline-block"
+        style="background: #414563; padding: 2px 5px; margin: 3px;">{{cate.name}}</span>
+    {% endfor%}
+
+    <p class="bg-success text-white w-100">Author :
+        {{post.author.first_name}}
+        {{post.author.last_name}}
+    </p>
+</div>
+
+
+{% endblock %}

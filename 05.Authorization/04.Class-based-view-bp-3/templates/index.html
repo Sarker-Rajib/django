@@ -29,6 +29,9 @@
             {% for item in posts %}
             <div class="col-md-6 col-lg-4">
                 <div class="news-card rounded border overflow-hidden p-4 h-100 position-relative">
+                    <div class="p">
+                        <img class="img-fluid" src="{{item.image.url}}" alt="thumb">
+                    </div>
                     <p>Post id: {{item.id}}</p>
                     <h5>{{item.title | truncatechars:40}}</h5>
                     <p>{{item.content | truncatewords:20}}</p>
@@ -37,7 +40,7 @@
                         style="background: #414563; padding: 2px 5px; margin: 3px;">{{cate.name}}</span>
                     {% endfor%}
                     <hr>
-                    <a href="#" class="btn mb-2">Read More ></a>
+                    <a href="{% url 'details-post' item.id %}" class="btn mb-2">Read More ></a>
 
                     <p class="bg-success text-white w-100 position-absolute start-0 bottom-0 px-3 py-1 m-0">Author :
                         {{item.author.first_name}}
