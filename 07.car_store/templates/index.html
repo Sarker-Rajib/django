@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<!--  -->
+{% block customCss %}
+<style>
+    .banner {
+        background: url(https://robbreport.com/wp-content/uploads/2023/09/RR_50_Most_Expensive_Cars_You_Can_Buy_Right_Now_Cadillac_Celestiq.jpg?w=1000) no-repeat center center/cover;
+    }
+
+    .banner .wrapper {
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.281);
+        color: #fff;
+        padding: 30px;
+    }
+</style>
+{% endblock %}
+<!--  -->
+
+{% block content %}
+<div class="banner">
+    <div class="wrapper">
+        <div>
+            <h1>Ride into Excellence</h1>
+            <p class="m-0">Discover Your Perfect Drive</p>
+            <p>Explore the Finest Selection of Cars</p>
+            <a href="#cars" class="btn text-white border">Choose yours Now</a>
+        </div>
+    </div>
+</div>
+
+<div id="cars">
+    <h3>Updates</h3>
+</div>
+{% endblock %}

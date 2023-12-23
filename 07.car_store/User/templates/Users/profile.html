@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+<!--  -->
+
+{% block content %}
+<h4>Profile of <strong class="text-success">{{user.first_name}} {{user.last_name}}</strong></h4>
+<hr>
+<a href="{% url 'change_password' %}" class="btn btn-warning mb-2">Change Password</a>
+
+<div class="login-form m-auto p-3 border rounded" style="max-width: 450px;">
+    <h5>Update Your profile Info</h5>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button class="btn btn-success w-100 mt-3 mb-2">Update</button>
+    </form>
+</div>
+{% endblock %}
