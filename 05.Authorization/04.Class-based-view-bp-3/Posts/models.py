@@ -12,3 +12,14 @@ class Add_Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Comment(models.Model):
+    post = models.ForeignKey(Add_Post, on_delete=models.CASCADE, related_name ='comments')
+    name = models.CharField(max_length = 30)
+    email = models.EmailField(unique=True)
+    body = models.TextField()
+    creates_on= models.DateField(auto_now_add = True)
+
+    def __str__(self):
+        return f'Comments by {self.name}'
+

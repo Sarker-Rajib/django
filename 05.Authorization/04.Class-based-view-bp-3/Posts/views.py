@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .forms import Create_Post
@@ -7,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 # class based view
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
+from .forms import Create_Comment
 
 # Create your views here.
 @login_required
@@ -74,4 +76,24 @@ class DetailPostByClass(DetailView):
     pk_url_kwarg = 'id'
     template_name = 'post/detail-post.html'
     context_object_name = 'post'
+
+    def post(self, request, *args, **kwargs):
+        comment_form = Create_Comment(data=self.request.POST)
+        post = self.get_object()
+        if comment_form.is_valid():
+            new_comment = comment_form.save()
+            new_comment.post = post
+            new_comment.save()
+        return self.get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.object
+        comments = post.comments.all()
+        comment_form = Create_Comment()
+        context['comments'] = comments
+        context['comment_form'] = comment_form
+        return context
+            
+
 

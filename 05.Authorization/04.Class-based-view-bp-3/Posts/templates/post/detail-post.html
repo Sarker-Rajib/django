@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- detail-post.html -->
-<div class="news-card rounded border p-3 h-100">
+<div class="news-card rounded border p-3 h-100 mb-3">
     <img src="{{ post.image.url }}" alt="image" class="img-fluid">
     <p>Posts id: {{ post.id }}</p>
     <h5>{{ post.title }}</h5>
@@ -18,6 +18,18 @@
         {{post.author.first_name}}
         {{post.author.last_name}}
     </p>
+    <div class="comments">
+        {{comments | length}}
+    </div>
+    <hr>
+    <div>
+        <h4>Make a comment</h4>
+        <form method="POST">
+            {% csrf_token %}
+            {{comment_form}}
+            <button class="btn btn-success">Submit</button>
+        </form>
+    </div>
 </div>
 
 
