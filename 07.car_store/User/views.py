@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse_lazy
 from . import forms, models
@@ -9,27 +10,28 @@ from Cars.models import Car
 
 
 # Create your views here.
+@login_required
 def user_profile(request):
     # bought_cars = models.MyCars.objects.all()
     myCars = models.MyCars.objects.filter(owner=request.user)
     return render(request, 'Users/profile.html', {'myCars': myCars})
 
 def user_register(request):
-    if request.user.is_authenticated:
-        return redirect('profile')
-    else:
+    if not request.user.is_authenticated:
         if request.method == "POST":
             inputForm = forms.RegisterUserForm(request.POST)
             if inputForm.is_valid():
                 inputForm.save()
                 messages.success(request, 'Account Created Successfully')
-                return redirect('profile')
+                return redirect('register')
             else:
                 return redirect('login')
             
         else:
             inputForm = forms.RegisterUserForm(request.POST)
             return render(request, 'Users/register.html', {'form': inputForm})
+    else:
+        return redirect('profile')
 
 class UserLogin(LoginView):
     form_class = AuthenticationForm
