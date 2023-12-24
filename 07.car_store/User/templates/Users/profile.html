@@ -2,16 +2,40 @@
 <!--  -->
 
 {% block content %}
-<h4>Profile of <strong class="text-success">{{user.first_name}} {{user.last_name}}</strong></h4>
-<hr>
-<a href="{% url 'change_password' %}" class="btn btn-warning mb-2">Change Password</a>
+<h4 class="text-light">Profile of <strong class="text-success">{{user.first_name}} {{user.last_name}}</strong></h4>
+<hr class="text-light">
+<a href="{% url 'change_password' %}" class="text-success btn btn-warning mb-2">Change Password</a>
+<a href="{% url 'update_profile' %}" class="text-success btn btn-warning mb-2">Update Profile</a>
 
-<div class="login-form m-auto p-3 border rounded" style="max-width: 450px;">
-    <h5>Update Your profile Info</h5>
-    <form method="POST">
-        {% csrf_token %}
-        {{form}}
-        <button class="btn btn-success w-100 mt-3 mb-2">Update</button>
-    </form>
+<h5 class="text-light mt-3">My Cars</h5>
+<hr class="text-light my-2">
+<div class="row g-3">
+    {% if myCars %}
+    {% for car in myCars %}
+    <div class="col-md-6 col-lg-4">
+        <div class="bg-light car-card border rounded shadow overflow-hidden h-100 position-relative pb-5">
+            <div class="image">
+                <img src="{{car.car.image.url}}" alt="car" class="w-100">
+            </div>
+            <div class="text p-3">
+                <a href="{% url 'car_details' car.car.id%}" class="btn w-100 p-0 text-start border-0">
+                    <h5 class="card-title text-success"> {{car.car.name}}</h5>
+                </a>
+                <p>{{car.car.brand_name}}</p>
+                <p>{{car.car.description | truncatewords:20}}</p>
+                <!--  -->
+            </div>
+            <div class="p-3 position-absolute start-0 bottom-0 w-100">
+                <a href="{% url 'car_details' car.car.id %}" class="btn w-100 btn-success">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h6 class="text-danger">
+        No cars brought yet !
+    </h6>
+    {% endif %}
 </div>
+
 {% endblock %}

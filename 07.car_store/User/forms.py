@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import MyCars
+
 
 # create user
 class RegisterUserForm(UserCreationForm):
@@ -17,3 +19,8 @@ class UpdateUser(UserChangeForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+
+class BuyCar(forms.ModelForm):
+    class Meta:
+        model = MyCars
+        fields = '__all__'

@@ -1,22 +1,10 @@
 Mid Term Exam
 
-Create a fully functional car sales website that facilitates car listings for users and 
-allows the users to filter cars by brand, create account, login, logout and also to buy a car. 
-Each car will have an image, title, description, price, and a "Buy Now" button. 
-Users can place orders, view their order history, and manage their account. 
-The platform should consist of the following features:
 
 User-Facing Features:
 1. Car Listings: (35 Marks)
-
-
-Then the user can see the car list with image, price, and can filter cars by brand name. 
-
-nd a button named Buy Now will be shown for an authenticated user to buy a product.
-
+an authenticated user to buy a product.
 Anyone can comment on any cars with their name, comment.  
-
-
 
 3. Placing Orders: (20 Marks)
 An authenticated user can only buy cars. 

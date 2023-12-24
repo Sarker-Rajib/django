@@ -5,15 +5,15 @@
 <h4 class="text-light">Profile of <strong class="text-success">{{user.first_name}} {{user.last_name}}</strong></h4>
 <hr class="text-light">
 <a href="{% url 'profile' %}" class="btn btn-warning mb-2">My Cars</a>
-<a href="{% url 'update_profile' %}" class="btn btn-warning mb-2">Update Profile</a>
-<hr class="text-light">
+<a href="{% url 'change_password' %}" class="btn btn-warning mb-2">Change Password</a>
 
+<hr class="text-light">
 <div class="bg-light login-form m-auto p-3 border rounded" style="max-width: 450px;">
-    <h4>Change Password</h4>
+    <h4>Update Your profile Info</h4>
     <form method="POST">
         {% csrf_token %}
         {{form}}
-        <button class="btn btn-success w-100 mt-3 mb-2">Login</button>
+        <button class="btn btn-success w-100 mt-3 mb-2">Update</button>
     </form>
 </div>
 {% endblock %}

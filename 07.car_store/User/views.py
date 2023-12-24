@@ -4,19 +4,15 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.urls import reverse_lazy
-from . import forms
+from . import forms, models
+from Cars.models import Car
+
 
 # Create your views here.
 def user_profile(request):
-    if request.method == 'POST':
-        updateForm = forms.UpdateUser(request.POST, instance = request.user)
-        if updateForm.is_valid():
-            updateForm.save()
-            messages.success(request, 'User Created Successfully')
-            return redirect('profile')
-    else:
-        updateForm = forms.UpdateUser(instance = request.user)
-        return render(request, 'Users/profile.html', {'form':updateForm})
+    # bought_cars = models.MyCars.objects.all()
+    myCars = models.MyCars.objects.filter(owner=request.user)
+    return render(request, 'Users/profile.html', {'myCars': myCars})
 
 def user_register(request):
     if request.user.is_authenticated:
@@ -68,3 +64,21 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user = request.user)
     return render(request, 'Users/change-password.html', {'form': form})
+
+def update_profile_data(request):
+    if request.method == 'POST':
+        updateForm = forms.UpdateUser(request.POST, instance = request.user)
+        if updateForm.is_valid():
+            updateForm.save()
+            messages.success(request, 'User Created Successfully')
+            return redirect('profile')
+    else:
+        updateForm = forms.UpdateUser(instance = request.user)
+        return render(request, 'Users/update-data.html', {'form':updateForm})
+
+def buy_car(request, id):
+    b_car = Car.objects.get(pk=id)
+    b_car.quantity -= 1
+    b_car.save()
+    models.MyCars.objects.create(car=b_car, owner=request.user)
+    return redirect('profile')
