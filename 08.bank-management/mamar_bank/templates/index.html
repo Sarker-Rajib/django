@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+<!--  -->
+{% block content %}
+<h2>Welcome</h2>
+<br>
+<a href="{% url 'register' %}" class="bg-blue-500">Register</a>
+{{request.user.first_name}}
+{% endblock %}
