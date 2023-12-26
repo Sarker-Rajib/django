@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>
+        {% block head_title %}Banking System{% endblock %}
+    </title>
+
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.0.1/dist/tailwind.min.css">
     <style>
         input,
@@ -15,9 +18,13 @@
 </head>
 
 <body>
-    {% block content %}
-
-    {% endblock %}
+    {% include 'navbar.html' %}
+    <div class="m-auto px-2" style="max-width: 1280px;">
+        {% block content %}
+        <!--  -->
+        {% endblock %}
+    </div>
+    {% include 'footer.html' %}
 </body>
 
 </html>
