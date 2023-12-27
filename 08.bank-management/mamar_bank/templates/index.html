@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
-{% load static %}
+<!-- {% load static %} -->
 <!--  -->
 {% block content %}
 <h2>Welcome <strong>{{request.user.first_name}} !</strong></h2>
+
+<hr>
+<img src="../static/bank.jpg" alt="image">
+
 <br>
 
 {% endblock %}

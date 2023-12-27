@@ -1,19 +1,15 @@
-from collections.abc import Mapping
-from typing import Any
 from django import forms
-from django.core.files.base import File
-from django.db.models.base import Model
 from django.forms.utils import ErrorList
 from .models import Transactions
 
 class TransactionsForm(forms.ModelForm):
     class Meta:
         model = Transactions
-        fields = ['account', 'amount']
+        fields = ['amount', 'transaction_type']
 
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop('account')
-        super.__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['transaction_type'].disabled = True
         self.fields['transaction_type'].widget = forms.HiddenInput()
 
@@ -22,7 +18,7 @@ class TransactionsForm(forms.ModelForm):
         self.instance.balance_amount = self.account.balance
         return super().save()
     
-class DepositForm(Transactions):
+class DepositForm(TransactionsForm):
     def clean_amount(self):
         min_deposit_amount = 100
         amount = self.cleaned_data.get('amount')
@@ -32,7 +28,7 @@ class DepositForm(Transactions):
             )
         return amount
 
-class WithdrawForm(Transactions):
+class WithdrawForm(TransactionsForm):
     def clean_amount(self):
         account = self.account
         min_withdraw_amount = 500
@@ -56,7 +52,7 @@ class WithdrawForm(Transactions):
         
         return amount
     
-class LoanRequestForm(Transactions):
+class LoanRequestForm(TransactionsForm):
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
         return amount
