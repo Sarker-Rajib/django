@@ -1,0 +1,8 @@
+<h4>Hello, {{user.first_name}} {{user.last_name}}</h4>
+{% if title == 'Loan Request' %}
+<p>{{title}} of amount: {{amount}}$ has been Submitted Successfully</p>
+{% else%}
+<p>{{title}} of amount: {{amount}}$ has been Successfully Done</p>
+{% endif%}
+<p>Your current Balance is {{user.account.balance}}</p>
+<p>Thanks for Banking With us</p>

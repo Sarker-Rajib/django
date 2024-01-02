@@ -1,6 +1,3 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404, redirect
 from django.views.generic import CreateView , ListView
@@ -13,6 +10,22 @@ from datetime import datetime
 from django.db.models import Sum
 from django.views import View
 from django.urls import reverse_lazy
+# --- == - 
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage, EmailMultiAlternatives
+
+
+# -------------- send mail in a function ----
+def send_notification_mail(user, amount, title):
+        mail_subject = f"{title} Message"
+        message = render_to_string('transactions/email.html',{
+            'user' : user,
+            'amount': amount,
+            'title': title
+        })
+        send_email = EmailMultiAlternatives(mail_subject, '', to = [user.email])
+        send_email.attach_alternative(message, 'text/html')
+        send_email.send()
 
 # Create your views here.
 class TransactionCreateMixin(LoginRequiredMixin, CreateView):
@@ -53,6 +66,11 @@ class DepositMoneyView(TransactionCreateMixin):
         )
 
         messages.success(self.request, f'Amount {amount} Deposit Succeessful.')
+        
+        # email dat
+        user = self.request.user
+        send_notification_mail(user, amount, 'Deposit' )
+
         return super().form_valid(form)
 
 class WithdrawMoneyView(TransactionCreateMixin):
@@ -72,6 +90,10 @@ class WithdrawMoneyView(TransactionCreateMixin):
         )
 
         messages.success(self.request, f'Amount {amount} Withdraw Succeessful.')
+
+        user = self.request.user
+        send_notification_mail(user, amount, 'Withdraw' )
+
         return super().form_valid(form)
     
 class LoanRequestView(TransactionCreateMixin):
@@ -91,6 +113,10 @@ class LoanRequestView(TransactionCreateMixin):
             return HttpResponse('You have crossed the limits')
 
         messages.success(self.request, f'Loan request sent to Admin')
+
+        user = self.request.user
+        send_notification_mail(user, amount, 'Loan Request' )
+
         return super().form_valid(form)
 
 class TransactionsReportView(LoginRequiredMixin, ListView):
