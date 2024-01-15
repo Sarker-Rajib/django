@@ -3,8 +3,8 @@ from django.shortcuts import redirect, get_object_or_404, redirect
 from django.views.generic import CreateView , ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Transactions
-from .constant import Deposit, Withdraw, Loan, Loan_Paid
-from .forms import DepositForm, WithdrawForm, LoanRequestForm
+from .constant import Deposit, Withdraw, Loan, Loan_Paid, TransferMoney
+from .forms import DepositForm, WithdrawForm, LoanRequestForm, TransferMoneyForm
 from django.contrib import messages
 from datetime import datetime
 from django.db.models import Sum
@@ -192,3 +192,28 @@ class LoanListView(LoginRequiredMixin,ListView):
         print(queryset)
         return queryset
 
+class TransferMoney(TransactionCreateMixin):
+    form_class = TransferMoneyForm
+    template_name = 'transactions/transfer-form.html'
+    success_url = reverse_lazy('transaction_report')
+    
+    def get_initial(self):
+        initial = {'transaction_type': TransferMoney}
+        return initial
+    
+    def form_valid(self, form):
+        # from_account = self.request.user.account
+        # to_account_number = form.cleaned_data.get('tranfer_account_number')
+        amount = form.cleaned_data.get('amount')
+        print(amount)
+
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        # from_account = self.request.user.account
+        to_account_number = form.cleaned_data.get('tranfer_account_number')
+        amount = form.cleaned_data.get('amount')
+        print(amount, to_account_number, 'INVALID')
+
+        return super().form_invalid(form)
+        

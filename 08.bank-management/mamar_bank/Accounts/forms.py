@@ -108,7 +108,8 @@ class UserUpdateForm(forms.ModelForm):
         if commit:
             user.save()
 
-            user_account, created = UserBankAccount.objects.get_or_create(user=user) # jodi account thake taile seta jabe user_account ar jodi account na thake taile create hobe ar seta created er moddhe jabe
+            user_account, created = UserBankAccount.objects.get_or_create(user=user) 
+            # jodi account thake taile seta jabe user_account ar jodi account na thake taile create hobe ar seta created er moddhe jabe
             user_address, created = UserAddress.objects.get_or_create(user=user) 
 
             user_account.Acctp = self.cleaned_data['Acctp']

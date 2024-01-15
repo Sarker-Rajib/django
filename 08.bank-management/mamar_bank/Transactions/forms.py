@@ -56,3 +56,21 @@ class LoanRequestForm(TransactionsForm):
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
         return amount
+
+class TransferMoneyForm(TransactionsForm):
+    tranfer_account_number = forms.IntegerField(label='Account Number')
+
+    def clean_amount(self):
+        amount = self.cleaned_data.get('amount')
+        if amount <= 0:
+            raise forms.ValidationError('Amount should be greater than zero.')
+
+        if amount > self.account.balance:
+            raise forms.ValidationError('Insufficient funds for this transfer.')
+
+        return amount
+
+    # def save(self, commit=True):
+    #     self.instance.account = self.from_account
+    #     self.instance.balance_amount = self.from_account.balance - self.cleaned_data.get('amount')
+    #     return super().save()
